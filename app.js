@@ -4,9 +4,10 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const fillMode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
+const reset = document.getElementById("jsReset");
 
 const INITIAL_COLOR = "black";
-
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 canvas.width = 500;
 canvas.height = 500;
 
@@ -14,7 +15,7 @@ ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
-ctx.lineWidth = 2.0;
+ctx.lineWidth = 10.0;
 
 let painting = false;
 let filling = false;
@@ -83,6 +84,12 @@ function handleSaveClick(evnet) {
   link.download = "Painting🎨";
   link.click();
 }
+
+function handleReset(event) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -106,4 +113,8 @@ if (fillMode) {
 
 if (save) {
   save.addEventListener("click", handleSaveClick);
+}
+
+if (reset) {
+  reset.addEventListener("click", handleReset);
 }
